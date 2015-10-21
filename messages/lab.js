@@ -1,17 +1,19 @@
 // Lab 6 js file containing parse function for json data
 
-var jsondata = new XMLHttpRequest();
-jsondata.open("GET","data.json",true);
+var xhr = new XMLHttpRequest();
 
 
 function parse() {
+	xhr.open("GET","data.json",true);
 
-	parsedObjects = JSON.parse(jsondata);
-	elem = document.getElementByID("messages");
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == 4 && xhr.status == 200){
+			jsondata = JSON.parse(xhr.responseText);
+			elem = document.getElementById("messages");
+			elem.innerHTML = jsondata["content"];	
+		}	
 
-	for( count = 0; count < parsedObjects.length; count++){
-		console.log(Objects.keys(parsedObjects[count]));
-		elem.innerHTML += "<p> " + parsedObjects[count]["content"] + parsedObects[count]["username"] + "</p>";
 	}
+	xhr.send();
 
 }
