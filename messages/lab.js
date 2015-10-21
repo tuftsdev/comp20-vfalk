@@ -14,6 +14,6 @@ function parse() {
 		}	
 
 	}
-	xhr.send();
+	xhr.send(null);
 
 }
