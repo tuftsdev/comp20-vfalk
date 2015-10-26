@@ -50,7 +50,7 @@ function renderMap()
 
 	marker = new google.maps.Marker({
 		position: me,
-		title: "Here I Am!",
+		title: "Vince Falk's Location",
  		icon: image
 	});
 	marker.setMap(map);
@@ -60,6 +60,25 @@ function renderMap()
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
 	});
+	var params = "login=PaulRamsey&lat=" + myLat + "&lng=" + myLng+ "&message=Vince Falk's Location";
+	console.log(encodeURIComponent(params));
 
+	accessDataStore();
+}
+function accessDataStore()
+{
+	var http = new XMLHttpRequest();
+	var url = "https://secret-about-box.herokuapp.com/sendLocation";
+	var params = "login=PaulRamsey&lat=" + myLat + "&lng=" + myLng+ "&message=Vince Falk's Location";
+	http.open("POST", url, true);
 
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+    	if(http.readyState == 4 && http.status == 200) {
+        	console.log(http.responseText);
+    	}
+	}
+	http.send(params);
 }
