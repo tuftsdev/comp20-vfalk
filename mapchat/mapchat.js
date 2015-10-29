@@ -48,20 +48,20 @@ function renderMap()
 	};
 
 
-	marker = new google.maps.Marker({
+	uniquemarker = new google.maps.Marker({
 		position: me,
-		title: "Vince Falk's Location",
+		title: "Successfully Retrieved Vince Falk's Location",
  		icon: image
 	});
-	marker.setMap(map);
+	uniquemarker.setMap(map);
 		
 	// Open info window on click of marker
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
+	google.maps.event.addListener(uniquemarker, 'click', function() {
+		infowindow.setContent(uniquemarker.title);
+		infowindow.open(map, uniquemarker);
 	});
 	var params = "login=PaulRamsey&lat=" + myLat + "&lng=" + myLng+ "&message=Vince Falk's Location";
-	console.log(encodeURIComponent(params));
+//	console.log(encodeURIComponent(params));
 
 	accessDataStore();
 }
@@ -72,23 +72,62 @@ function accessDataStore()
 	var params = "login=PaulRamsey&lat=" + myLat + "&lng=" + myLng+ "&message=Vince Falk's Location";
 	http.open("POST", url, true);
 
+
 	//Send the proper header information along with the request
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	http.onreadystatechange = function() {//Call a function when the state changes.
     	if(http.readyState == 4 && http.status == 200) {
-        	console.log(http.responseText);
+ //       	console.log(http.responseText);
         	jsondata = JSON.parse(http.responseText);
-        	for (count = 0; count < jsondata.length; count++){
-						marker = new google.maps.Marker({
-						position: new google.maps.LatLng(jsondata[count]["lat"], jsondata[count]["lng"]),
-						title: jsondata[count]["login"],
-						});
-						marker.setMap(map);
-				}
-        	console.log(jsondata);
+        	var marker = new Array();
 
+        	for (var count = 0; count < jsondata.length; count++){
+						marker[count] = new google.maps.Marker({
+							position: new google.maps.LatLng(jsondata[count]["lat"], jsondata[count]["lng"]),
+							title: "Login: " + jsondata[count]["login"]+ "<br>" + "Message: " + jsondata[count]["message"]
+						});
+						marker[count].setMap(map);
+						console.log(marker[count].title)
+						var infowindow = new google.maps.InfoWindow();
+						google.maps.event.addListener(marker[count], 'click', function() {
+							infowindow.setContent(this.title);
+							infowindow.open(this.getMap(), this);
+						});
+			}
+			console.log(jsondata);
+		// Open info window on click of marker
+	
     	}
 	}
 	http.send(params);
+
+}
+function haversine()
+{
+Number.prototype.toRad = function() {
+   return this * Math.PI / 180;
+}
+
+var lat2 = 42.741; 
+var lon2 = -71.3161; 
+var lat1 = 42.806911; 
+var lon1 = -71.290611; 
+
+var R = 6371; // km 
+//has a problem with the .toRad() method below.
+var x1 = lat2-lat1;
+var dLat = x1.toRad();  
+var x2 = lon2-lon1;
+var dLon = x2.toRad();  
+var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);  
+var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+var d = R * c; 
+
+alert(d);
+
+
+
 }
