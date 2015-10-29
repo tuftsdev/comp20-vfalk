@@ -78,6 +78,16 @@ function accessDataStore()
 	http.onreadystatechange = function() {//Call a function when the state changes.
     	if(http.readyState == 4 && http.status == 200) {
         	console.log(http.responseText);
+        	jsondata = JSON.parse(http.responseText);
+        	for (count = 0; count < jsondata.length; count++){
+						marker = new google.maps.Marker({
+						position: new google.maps.LatLng(jsondata[count]["lat"], jsondata[count]["lng"]),
+						title: jsondata[count]["login"],
+						});
+						marker.setMap(map);
+				}
+        	console.log(jsondata);
+
     	}
 	}
 	http.send(params);
