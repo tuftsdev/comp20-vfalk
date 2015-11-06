@@ -8,28 +8,31 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
 
+	var i = 0;
+
+
 	$(document).ready(function(){
 
-		var messages = [];
+		for(j = localStorage.length; j >= 0; j--){
+			$('#log').append(localStorage.getItem(j));
+		}
+		
 
    		$('#msg').keypress(function(event) {
 			if (event.which == 13) {
 				var date = new Date;
+				i = localStorage.length;
 				
 				date = date.toDateString() + " " + date.getHours()+ ":" +date.getMinutes() + ":" + date.getSeconds();
 				message = this.value
 
-				localStorage["messages"] = JSON.stringify(messages);
-				$('#log').append(date + " - " + this.value + "<br>");
+				$('#log').prepend(date + " - " + message + "<br>");
 				this.value = " ";
+				localStorage.setItem(i,date + " - " + message + "<br>");
+				i++;
 			}
-			var storedMessages = JSON.parse(localStorage["messages"]);
-			console.log(storedMessages);
+			
 		});
-		for(i = 0; i < localStorage.length; i++){
-			console.log (storedMessages[i]);
-		}
-   
  	});
 
 	</script>
