@@ -103,14 +103,14 @@ function accessDataStore()
 							title: "Login: " + jsondata[count]["login"]+ "<br>" + "Message: " + jsondata[count]["message"]
 						});
 						marker[count].setMap(map);
-						console.log(marker[count].title)
+						//console.log(marker[count].title)
 						var infowindow = new google.maps.InfoWindow();
 						google.maps.event.addListener(marker[count], 'click', function() {
 							infowindow.setContent(this.title);
 							infowindow.open(this.getMap(), this);
 						});
 			}
-			console.log(jsondata);
+			//console.log(jsondata);
 		// Open info window on click of marker
 	
     	}
