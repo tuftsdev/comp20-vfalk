@@ -68,7 +68,7 @@ function renderMap()
 function accessDataStore()
 {
 	var http = new XMLHttpRequest();
-	var url = "https://secret-about-box.herokuapp.com/sendLocation";
+	var url = "https://morning-taiga-8499.herokuapp.com/sendLocation";// "https://secret-about-box.herokuapp.com/sendLocation";
 	var params = "login=PaulRamsey&lat=" + myLat + "&lng=" + myLng+ "&message=Vince Falk's Location";
 	http.open("POST", url, true);
 
