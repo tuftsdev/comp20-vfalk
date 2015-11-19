@@ -98,10 +98,11 @@ function accessDataStore()
 			}
 
         	for (var count = 0; count < jsondata.length; count++){
+        				var distance = haversine(count);
 						marker[count] = new google.maps.Marker({
 							position: new google.maps.LatLng(jsondata[count]["lat"], jsondata[count]["lng"]),
 							title: "Login: " + jsondata[count]["login"]+ "<br>" + "Message: " + jsondata[count]["message"] + "<br>" +
-							"Distance from Vince: " + haversine(count)
+							"Distance from Vince: " + distance + " Miles"
 						});
 						marker[count].setMap(map);
 						//console.log(marker[count].title)
