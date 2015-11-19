@@ -100,8 +100,8 @@ function accessDataStore()
         	for (var count = 0; count < jsondata.length; count++){
 						marker[count] = new google.maps.Marker({
 							position: new google.maps.LatLng(jsondata[count]["lat"], jsondata[count]["lng"]),
-							title: "Login: " + jsondata[count]["login"]+ "<br>" + "Message: " + jsondata[count]["message"] + 
-							"Distance from Vince: " + haversine(count);
+							title: "Login: " + jsondata[count]["login"]+ "<br>" + "Message: " + jsondata[count]["message"] + "<br>"
+							"Distance from Vince: " + haversine(count)
 						});
 						marker[count].setMap(map);
 						//console.log(marker[count].title)
@@ -122,7 +122,7 @@ function accessDataStore()
 function haversine(count)
 {
 Number.prototype.toRad = function() {
-   return this * Math.PI / 180;
+   	return this * Math.PI / 180;
 }
 
 var lat2 = myLat; 
@@ -143,7 +143,6 @@ var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 var d = R * c; 
 
 return(d*0.621371);
-
 
 
 }
