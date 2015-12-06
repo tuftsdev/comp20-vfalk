@@ -13,11 +13,10 @@
 <h4> Prepared by: Vince Falk </h4>
 	<h2>Introduction</h2>
 	<div class = "hline"></div>
-		<h3> Tufts University</h3>
-			<p> Major: Human Factors Engineering</p>
-			<p> Minor: Engineering Management</p>
-			<p> GPA: 3.57 / 4 </p>
-			<p> Dean's List All Semesters </p>
+
+			<p> For assignment 4, I was hired to exploit the vulernability of Josh Kaltman's assignments 2 and  3. For assignment 2, Josh created an interactive map similar to the infamous "Marauders Map" as seen in the Harry Potter series. Instead of wizards and witches, Josh's map displayed other students in his Comp 20 class as markers using a Google Api. He included himself on the map with a unique marker, and each of his classmates has the default marker provided by Google, with am info box stating their login name, message, and how far away they are from Josh.  </p>
+			<p> For assignment 2, Josh used a database created by Ming in order to get the locations of his classmates. This was implemented by sending a request to Ming's server hosted on Heroku.com. If his request was correct, Ming returned a JSON feed of the locations of his classmates. Therefore, for assignment 3, Josh had to create a similar server to serve his assignment 2. Instead of just being responsible for returning a JSON feed of the locations of his classmates, he created a separete html page to list all of the checkins, as well as being responsible of taking a request for the latest check-in for a particular login name, and returning the latest check in. There were certain criteria required for the format of both the list of checkins on the html page and the response for the latest location of a certain login name. Each criteria exploited will be included below in the "Abstract of Findings" section in this report. </p>
+
 	<h2> Methodology </h2>
 	<div class = "hline"></div>
 		<h3> Computer Science </h3>
