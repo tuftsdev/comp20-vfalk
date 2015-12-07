@@ -22,11 +22,7 @@ h3 {
 	text-indent: 5%;
 	text-decoration: underline;
 }
-
-li{
-	margin-left: 8%;
-}
-
+.highlightme { background-color:#FFFF00; }
 body {
 	text-indent:2%;
 }

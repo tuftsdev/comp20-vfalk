@@ -29,13 +29,34 @@
 			
 	<h2> Issues Found </h2>
 		<ol>
-				<li> Led a project to create a travel program to improve our business group's travel process (~900 employees)</li>
-				<li> Created "New Hires Webpage" to streamline employee integration </li>
-				<li> Planned, organized, and ran quarterly event as a member of our group's Org. Health Team </li>
-				<li> Created training and resources to educate group directors and managers on intellectual property protocol </li>
-				<li> Ran user experience (UX) tests on Graphical User Interface (GUI) for High Performance Computing </li>
-				<li> Researched solution for representing a large data set using visualization tools. Consulted companies and connected two separate Intel business groups to collaborate on finding a solution </li>
-			</ol>
+				<li> Invalid Input </li>
+				<ul>
+					<li> Was able to add words as latitudes and longitudes, stored in database without an error message. </li>	
+					<li> POST API :- Stored invalid input in the database</li>
+					<li> Low: Individual markers were distorted and the list of "Who Checked In" showed the invalid logins. However, the application still ran. </li>
+					<li> I used curl to input invalid data. Example :</li>
+					<div class = "center"> <p>curl --data "login=mchow&lat=40&lng=<span class = "highlightme">dsf</span>&message=this" https://safe-shore-4767.herokuapp.com/sendLocation </p> </div>
+
+					<p><img src = "MongoScreenshot.jpg" alt="Photo of Josh's Mongo DB" /></p>
+					<li> Simply filtering the input for numbers only in latitude and longitude would fix this.  </li>
+					<p></p>
+				</ul>
+				<li> Cross-Cite Scripting with Images</li>
+				<ul>
+
+					<li> Was able to add images as messages via Cross Site Scripting using the IMG tag </li>
+					<li> GET API </li>
+					<li> High: Anyone could add additional HTML or Javascript or modify the existing code. Hackers can violate Same Origin Policy. Unless corrected in the database, any images injected will remain visible to other users until manually deleted in the database. While this could include innapropriate content, even the unprofessionalism of random images could cost Josh his job as a web developer. </li>
+					<li> I used curl to input invalid data. Example :</li>
+					<div class = "center"> <p> "curl --data "login=mchow&lat=-10&lng=10&message=<span class = "highlightme">&ltIMG SRC='https://memecrunch.com/image/514605afafa96f771d00002d.jpg?w=400;'>"</span> https://safe-shore-4767.herokuapp.com/sendLocation"</p> </div>
+					<p><img src = "CheckinSpong.jpg" alt="Screenshot of Josh's Checkins page" /></p>
+					<p><img src = "MapSpong.jpg" alt="Screenshot of Josh's map" /></p>
+					<li> This can be fixed by checking that the input does not have any of the special characters used in cross-site scripting. A technical solution I found from a previous student's security assignment is using "str.match(/[\d\w\s\]|[\~\!\@\#\$\^\*\-\_\+\;]*/g).join('')". This is checking for characters that match the contents inside the parenthesis, and takes them out of the string.</li>
+
+
+				</ul>
+				
+		</ol>
 	<div class = "hline"></div>
 		<p> C++, HTML, Microsoft Office, Leadership, Teamwork </p>
 	<h2> Conclusion </h2>
